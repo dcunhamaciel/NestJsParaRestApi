@@ -1,0 +1,11 @@
+@baseUrl = http://localhost:3000
+
+### RecadosController
+
+# @name RecadosController
+GET {{baseUrl}}/recados/1
+
+### RecadosController
+
+# @name RecadosController
+GET {{baseUrl}}/recados
