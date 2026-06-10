@@ -9,3 +9,8 @@ GET {{baseUrl}}/home/hello
 
 # @name AppControllerExample
 GET {{baseUrl}}/home/example
+
+### ConceitosManualController
+
+# @name ConceitosManualController
+GET {{baseUrl}}/conceitos-manual
