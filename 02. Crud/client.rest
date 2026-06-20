@@ -9,3 +9,8 @@ GET {{baseUrl}}/recados/5
 
 # @name RecadosController
 GET {{baseUrl}}/recados
+
+### RecadosController
+
+# @name RecadosController
+POST {{baseUrl}}/recados
