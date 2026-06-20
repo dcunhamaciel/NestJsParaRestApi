@@ -14,3 +14,9 @@ GET {{baseUrl}}/recados
 
 # @name RecadosController
 POST {{baseUrl}}/recados
+Content-Type: application/json
+
+{
+    "recado": "Este é o recado que estou enviando.",
+    "nova_chave": "Outro valor."
+}
