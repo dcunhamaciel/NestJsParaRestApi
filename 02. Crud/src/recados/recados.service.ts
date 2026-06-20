@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
 
 @Injectable()
@@ -15,9 +15,14 @@ export class RecadosService {
     },
   ];
 
-  findOne(id: number): Recado | undefined {
-    //TODO: não está localizando id 1
-    return this.recados.find((recado) => recado.id === id);
+  findOne(id: number): Recado {
+    const recado = this.recados.find((recado) => recado.id === id);
+
+    if (!recado) {
+      this.throwNotFoundException();
+    }
+
+    return recado;
   }
 
   findAll(): Recado[] {
@@ -36,25 +41,33 @@ export class RecadosService {
     return novoRecado;
   }
 
-  update(id: number, body: any): Recado | undefined {
+  update(id: number, body: any): Recado {
     const recadoIndex = this.recados.findIndex((recado) => recado.id === id);
 
-    if (recadoIndex >= 0) {
-        const recado = this.recados[recadoIndex];
-        this.recados[recadoIndex] = {
-            ...recado,
-            ...body,
-        };
-
-        return this.recados[recadoIndex];
+    if (recadoIndex < 0) {
+      this.throwNotFoundException();
     }
+
+    const recado = this.recados[recadoIndex];
+    this.recados[recadoIndex] = {
+      ...recado,
+      ...body,
+    };
+
+    return this.recados[recadoIndex];
   }
 
   remove(id: number) {
     const recadoIndex = this.recados.findIndex((recado) => recado.id === id);
 
-    if (recadoIndex >= 0) {
-      this.recados.splice(recadoIndex, 1);
+    if (recadoIndex < 0) {
+      this.throwNotFoundException();
     }
+
+    this.recados.splice(recadoIndex, 1);
+  }
+
+  throwNotFoundException(): never {
+    throw new NotFoundException('Recado não encontrado!');
   }
 }
