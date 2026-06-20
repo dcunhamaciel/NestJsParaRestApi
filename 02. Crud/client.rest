@@ -20,3 +20,14 @@ Content-Type: application/json
     "recado": "Este é o recado que estou enviando.",
     "nova_chave": "Outro valor."
 }
+
+### RecadosController
+
+# @name RecadosController
+PATCH {{baseUrl}}/recados/8
+Content-Type: application/json
+
+{
+    "recado": "Atualizando o recado 8.",
+    "atualizar": true
+}
