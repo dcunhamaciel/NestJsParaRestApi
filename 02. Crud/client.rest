@@ -8,7 +8,9 @@ GET {{baseUrl}}/recados/5
 ### RecadosController
 
 # @name RecadosController
-GET {{baseUrl}}/recados
+GET {{baseUrl}}/recados/
+?limit=15
+&offset=2
 
 ### RecadosController
 
