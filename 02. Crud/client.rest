@@ -3,7 +3,7 @@
 ### RecadosController
 
 # @name RecadosController
-GET {{baseUrl}}/recados/5
+GET {{baseUrl}}/recados/2
 
 ### RecadosController
 
@@ -18,23 +18,29 @@ GET {{baseUrl}}/recados/
 POST {{baseUrl}}/recados
 Content-Type: application/json
 
-{
-    "recado": "Este é o recado que estou enviando.",
-    "nova_chave": "Outro valor."
-}
+  {
+    "texto": "NOVO recado",
+    "de": "Joana",
+    "para": "João",
+    "lido": false,
+    "data": "2026-06-20T15:03:51.760Z"
+  }
 
 ### RecadosController
 
 # @name RecadosController
-PATCH {{baseUrl}}/recados/8
+PATCH {{baseUrl}}/recados/2
 Content-Type: application/json
 
-{
-    "recado": "Atualizando o recado 8.",
-    "atualizar": true
-}
+  {
+    "texto": "ATUALIZAR recado",
+    "de": "Joana",
+    "para": "João",
+    "lido": true,
+    "data": "2026-06-20T15:03:51.760Z"
+  }
 
 ### RecadosController
 
 # @name RecadosController
-DELETE {{baseUrl}}/recados/3
+DELETE {{baseUrl}}/recados/2

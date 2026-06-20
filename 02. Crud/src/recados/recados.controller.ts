@@ -6,41 +6,39 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
-  Query,
 } from '@nestjs/common';
+import { RecadosService } from './recados.service';
 
 @Controller('recados')
 export class RecadosController {
+  constructor(private readonly recadosService: RecadosService) {}
+
   @Get(':id')
-  findOne(@Param('id') id: number): string {
-    return `Essa rota retorna o recado ID ${id}!`;
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.recadosService.findOne(id);
   }
 
   @HttpCode(HttpStatus.OK)
   @Get()
-  findAll(@Query() pagination: any): string {
-    const { limit = 10, offset = 0 } = pagination;
-
-    return `Retorda todos os recardos. Limit: ${limit}, Offset: ${offset}`;
+  findAll() {
+    return this.recadosService.findAll();
   }
 
   @Post()
   create(@Body() body: any): any {
-    return body;
+    return this.recadosService.create(body);
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() body: any): any {
-    return {
-      id,
-      ...body,
-    };
+  update(@Param('id', ParseIntPipe) id: number, @Body() body: any): any {
+    return this.recadosService.update(id, body);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
-    return `Recado ID ${id} deletado!`;
+  remove(@Param('id', ParseIntPipe) id: number) {
+    this.recadosService.remove(id);
   }
 }
