@@ -31,3 +31,8 @@ Content-Type: application/json
     "recado": "Atualizando o recado 8.",
     "atualizar": true
 }
+
+### RecadosController
+
+# @name RecadosController
+DELETE {{baseUrl}}/recados/3
