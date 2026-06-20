@@ -1,10 +1,10 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 
 @Controller('recados')
 export class RecadosController {
   @Get(':id')
-  findOne(id: number): string {
-    return 'Essa rota retorna um recado!';
+  findOne(@Param('id') id: number): string {
+    return `Essa rota retorna o recado ID ${id}`;
   }
 
   @Get()
