@@ -33,11 +33,10 @@ PATCH {{baseUrl}}/recados/2
 Content-Type: application/json
 
   {
-    "texto": "ATUALIZAR recado",
+    "texto": "RECADO ATUALIZADO",
     "de": "Joana",
     "para": "João",
-    "lido": true,
-    "data": "2026-06-20T15:03:51.760Z"
+    "lido": true
   }
 
 ### RecadosController
