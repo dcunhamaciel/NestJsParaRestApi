@@ -14,6 +14,8 @@ export class RecadosService {
       para: 'João',
       lido: false,
       data: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
   ];
 
@@ -40,6 +42,8 @@ export class RecadosService {
       ...createRecadoDto,
       lido: false,
       data: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     this.recados.push(novoRecado);
@@ -58,6 +62,7 @@ export class RecadosService {
     this.recados[recadoIndex] = {
       ...recado,
       ...updateRecadoDto,
+      updatedAt: new Date(),
     };
 
     return this.recados[recadoIndex];
