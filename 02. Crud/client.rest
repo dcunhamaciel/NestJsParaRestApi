@@ -27,7 +27,7 @@ Content-Type: application/json
 ### RecadosController
 
 # @name RecadosController
-PATCH {{baseUrl}}/recados/2
+PATCH {{baseUrl}}/recados/4
 Content-Type: application/json
 
   {

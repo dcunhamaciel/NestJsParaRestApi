@@ -7,20 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class RecadosService {
-  private lastId = 1;
-  private recados: Recado[] = [
-    {
-      id: 1,
-      texto: 'Este é um recado de teste',
-      de: 'Joana',
-      para: 'João',
-      lido: false,
-      data: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
-
   constructor(
     @InjectRepository(Recado)
     private recadoRepository: Repository<Recado>,
@@ -48,21 +34,23 @@ export class RecadosService {
     return novoRecado;
   }
 
-  update(id: number, updateRecadoDto: UpdateRecadoDto): Recado {
-    const recadoIndex = this.recados.findIndex((recado) => recado.id === id);
+  async update(id: number, updateRecadoDto: UpdateRecadoDto): Promise<Recado> {
+    const partialUpdateRecadoDto = {
+      texto: updateRecadoDto?.texto,
+      lido: updateRecadoDto?.lido,
+    };
+    const recado = await this.recadoRepository.preload({
+      id,
+      ...partialUpdateRecadoDto,
+    });
 
-    if (recadoIndex < 0) {
+    if (!recado) {
       this.throwNotFoundException();
     }
 
-    const recado = this.recados[recadoIndex];
-    this.recados[recadoIndex] = {
-      ...recado,
-      ...updateRecadoDto,
-      updatedAt: new Date(),
-    };
+    await this.recadoRepository.save(recado);
 
-    return this.recados[recadoIndex];
+    return recado;
   }
 
   async remove(id: number): Promise<void> {
