@@ -42,20 +42,8 @@ export class RecadosService {
     return recados;
   }
 
-  create(createRecadoDto: CreateRecadoDto): Recado {
-    this.lastId++;
-
-    const id = this.lastId;
-    const novoRecado = {
-      id,
-      ...createRecadoDto,
-      lido: false,
-      data: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-
-    this.recados.push(novoRecado);
+  async create(createRecadoDto: CreateRecadoDto): Promise<Recado> {
+    const novoRecado = await this.recadoRepository.save(createRecadoDto);
 
     return novoRecado;
   }
@@ -77,14 +65,14 @@ export class RecadosService {
     return this.recados[recadoIndex];
   }
 
-  remove(id: number) {
-    const recadoIndex = this.recados.findIndex((recado) => recado.id === id);
+  async remove(id: number): Promise<void> {
+    const recado = await this.findOne(id);
 
-    if (recadoIndex < 0) {
+    if (!recado) {
       this.throwNotFoundException();
     }
 
-    this.recados.splice(recadoIndex, 1);
+    await this.recadoRepository.remove(recado);
   }
 
   throwNotFoundException(): never {

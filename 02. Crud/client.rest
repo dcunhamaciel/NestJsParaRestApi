@@ -40,4 +40,4 @@ Content-Type: application/json
 ### RecadosController
 
 # @name RecadosController
-DELETE {{baseUrl}}/recados/10
+DELETE {{baseUrl}}/recados/3
