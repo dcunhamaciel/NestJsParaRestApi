@@ -21,9 +21,7 @@ Content-Type: application/json
   {
     "texto": "NOVO recado",
     "de": "Joana",
-    "para": "João",
-    "lido": false,
-    "data": "2026-06-20T15:03:51.760Z"
+    "para": "João"
   }
 
 ### RecadosController
