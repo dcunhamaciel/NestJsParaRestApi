@@ -45,6 +45,24 @@ export class PessoasService {
     return pessoa;
   }
 
+  async update(id: number, updatePessoaDto: CreatePessoaDto): Promise<Pessoa> {
+    const pessoaData = {
+      passwordHash: updatePessoaDto.password,
+      nome: updatePessoaDto.nome,
+    };
+
+    const pessoa = await this.pessoaRepository.preload({
+      id,
+      ...pessoaData,
+    });
+
+    if (!pessoa) {
+      throw new NotFoundException('Pessoa não encontrada.');
+    }
+
+    return await this.pessoaRepository.save(pessoa);
+  }
+
   async remove(id: number): Promise<void> {
     const pessoa = await this.findOne(id);
 
