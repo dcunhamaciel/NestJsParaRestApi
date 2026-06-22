@@ -41,3 +41,37 @@ Content-Type: application/json
 
 # @name RecadosController
 DELETE {{baseUrl}}/recados/3
+
+
+
+
+
+
+
+
+
+
+
+### PessoasController
+
+# @name PessoasController
+GET {{baseUrl}}/pessoas/2
+
+### PessoasController
+
+# @name PessoasController
+GET {{baseUrl}}/pessoas/
+?limit=15
+&offset=2
+
+### PessoasController
+
+# @name PessoasController
+POST {{baseUrl}}/pessoas
+Content-Type: application/json
+
+  {
+    "email": "jaum@example.com",
+    "password": "123456",
+    "nome": "Jaum"
+  }
