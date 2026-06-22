@@ -9,26 +9,26 @@ import {
 @Entity()
 export class Recado {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column({ type: 'varchar', length: 255 })
-  texto: string;
+  texto!: string;
 
   @Column({ type: 'varchar', length: 50 })
-  de: string;
+  de!: string;
 
   @Column({ type: 'varchar', length: 50 })
-  para: string;
+  para!: string;
 
   @Column({ type: 'boolean', default: false })
-  lido: boolean;
+  lido!: boolean;
 
   @Column({ type: 'timestamp', nullable: true })
-  data: Date;
+  data!: Date;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

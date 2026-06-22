@@ -10,21 +10,21 @@ import {
 @Entity()
 export class Pessoa {
   @PrimaryGeneratedColumn()
-  id: number;
+  id!: number;
 
   @Column()
   @IsEmail()
-  email: string;
+  email!: string;
 
   @Column({ type: 'varchar', length: 255 })
-  passwordHash: string;
+  passwordHash!: string;
 
   @Column({ type: 'varchar', length: 100 })
-  nome: string;
+  nome!: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }
