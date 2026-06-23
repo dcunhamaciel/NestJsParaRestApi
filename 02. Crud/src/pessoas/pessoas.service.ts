@@ -3,6 +3,7 @@ import { CreatePessoaDto } from './dto/create-pessoa.dto';
 import { Pessoa } from './entities/pessoa.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdatePessoaDto } from './dto/update-pessoa.dto';
 
 @Injectable()
 export class PessoasService {
@@ -45,7 +46,7 @@ export class PessoasService {
     return pessoa;
   }
 
-  async update(id: number, updatePessoaDto: CreatePessoaDto): Promise<Pessoa> {
+  async update(id: number, updatePessoaDto: UpdatePessoaDto): Promise<Pessoa> {
     const pessoaData = {
       passwordHash: updatePessoaDto.password,
       nome: updatePessoaDto.nome,
