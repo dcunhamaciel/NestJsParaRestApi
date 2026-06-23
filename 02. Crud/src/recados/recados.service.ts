@@ -5,6 +5,7 @@ import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { Repository } from 'typeorm/browser/repository/Repository.js';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PessoasService } from 'src/pessoas/pessoas.service';
+import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Injectable()
 export class RecadosService {
@@ -31,7 +32,9 @@ export class RecadosService {
     return recado;
   }
 
-  async findAll(): Promise<Recado[]> {
+  async findAll(paginationDto?: PaginationDto): Promise<Recado[]> {
+    const { limit = 10, offset = 0 } = paginationDto || {};
+
     const recados = await this.recadoRepository.find({
       relations: { de: true, para: true },
       order: { id: 'DESC' },
@@ -39,6 +42,8 @@ export class RecadosService {
         de: { id: true, nome: true },
         para: { id: true, nome: true },
       },
+      take: limit,
+      skip: offset,
     });
 
     return recados;
