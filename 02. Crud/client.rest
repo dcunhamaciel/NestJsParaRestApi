@@ -20,8 +20,8 @@ Content-Type: application/json
 
   {
     "texto": "NOVO recado",
-    "de": "Joana",
-    "para": "João"
+    "deId": 2,
+    "paraId": 3
   }
 
 ### RecadosController
@@ -42,16 +42,6 @@ Content-Type: application/json
 # @name RecadosController
 DELETE {{baseUrl}}/recados/3
 
-
-
-
-
-
-
-
-
-
-
 ### PessoasController
 
 # @name PessoasController
@@ -71,7 +61,7 @@ POST {{baseUrl}}/pessoas
 Content-Type: application/json
 
   {
-    "email": "jaum@example.com",
-    "password": "123456",
-    "nome": "Jaum"
+    "email": "jose@example.com",
+    "password": "555555",
+    "nome": "José"
   }

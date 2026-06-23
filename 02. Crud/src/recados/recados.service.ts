@@ -15,7 +15,14 @@ export class RecadosService {
   ) {}
 
   async findOne(id: number): Promise<Recado> {
-    const recado = await this.recadoRepository.findOne({ where: { id } });
+    const recado = await this.recadoRepository.findOne({
+      relations: { de: true, para: true },
+      select: {
+        de: { id: true, nome: true },
+        para: { id: true, nome: true },
+      },
+      where: { id },
+    });
 
     if (!recado) {
       this.throwNotFoundException();
@@ -25,13 +32,30 @@ export class RecadosService {
   }
 
   async findAll(): Promise<Recado[]> {
-    const recados = await this.recadoRepository.find();
+    const recados = await this.recadoRepository.find({
+      relations: { de: true, para: true },
+      order: { id: 'DESC' },
+      select: {
+        de: { id: true, nome: true },
+        para: { id: true, nome: true },
+      },
+    });
 
     return recados;
   }
 
   async create(createRecadoDto: CreateRecadoDto): Promise<Recado> {
-    const novoRecado = await this.recadoRepository.save(createRecadoDto);
+    const { deId, paraId } = createRecadoDto;
+    const de = await this.pessoasService.findOne(deId);
+    const para = await this.pessoasService.findOne(paraId);
+
+    const novoRecado = await this.recadoRepository.save({
+      texto: createRecadoDto.texto,
+      de,
+      para,
+      lido: false,
+      data: new Date(),
+    });
 
     return novoRecado;
   }
