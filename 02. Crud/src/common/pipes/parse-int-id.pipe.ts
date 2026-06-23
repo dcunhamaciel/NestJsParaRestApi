@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 
 @Injectable()
-export class ParseIntIdPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
+export class ParseIntIdPipe implements PipeTransform<string, number | string> {
+  transform(value: string, metadata: ArgumentMetadata): number | string {
     if (metadata.type !== 'param' || metadata.data !== 'id') {
       return value;
     }
