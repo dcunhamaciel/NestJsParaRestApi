@@ -21,10 +21,12 @@ import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interce
 import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
 import { ErrorHandlingInterceptor } from 'src/common/interceptors/error-handling.interceptor';
 import { SimpleCacheInterceptor } from 'src/common/interceptors/simple-cache.interceptor';
+import { ChangeDataInterceptor } from 'src/common/interceptors/change-data.interceptor';
 
 @Controller('recados')
 @UsePipes(ParseIntIdPipe)
 @UseInterceptors(SimpleCacheInterceptor)
+@UseInterceptors(ChangeDataInterceptor)
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
