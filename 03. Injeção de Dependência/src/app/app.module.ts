@@ -12,7 +12,7 @@ import { MyExceptionFilter } from 'src/common/filters/my-exception.filter';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 5434,
+      port: 5432,
       username: 'postgres',
       password: 'masterkey',
       database: 'recados',
