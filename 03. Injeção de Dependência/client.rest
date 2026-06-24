@@ -1,0 +1,68 @@
+@baseUrl = http://localhost:3000
+
+### RecadosController
+
+# @name RecadosController
+GET {{baseUrl}}/recados/2
+
+### RecadosController
+
+# @name RecadosController
+GET {{baseUrl}}/recados/
+?limit=15
+&offset=2
+Authorization: Bearer 123456
+
+### RecadosController
+
+# @name RecadosController
+POST {{baseUrl}}/recados
+Content-Type: application/json
+
+  {
+    "texto": "NOVO recado",
+    "deId": 2,
+    "paraId": 3
+  }
+
+### RecadosController
+
+# @name RecadosController
+PATCH {{baseUrl}}/recados/4
+Content-Type: application/json
+
+  {
+    "texto": "RECADO ATUALIZADO",
+    "de": "Joana",
+    "para": "João",
+    "lido": true
+  }
+
+### RecadosController
+
+# @name RecadosController
+DELETE {{baseUrl}}/recados/3
+
+### PessoasController
+
+# @name PessoasController
+GET {{baseUrl}}/pessoas/2
+
+### PessoasController
+
+# @name PessoasController
+GET {{baseUrl}}/pessoas/
+?limit=15
+&offset=2
+
+### PessoasController
+
+# @name PessoasController
+POST {{baseUrl}}/pessoas
+Content-Type: application/json
+
+  {
+    "email": "jose@example.com",
+    "password": "555555",
+    "nome": "José"
+  }
