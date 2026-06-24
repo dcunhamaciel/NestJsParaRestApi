@@ -23,6 +23,7 @@ import { ErrorHandlingInterceptor } from 'src/common/interceptors/error-handling
 import { SimpleCacheInterceptor } from 'src/common/interceptors/simple-cache.interceptor';
 import { ChangeDataInterceptor } from 'src/common/interceptors/change-data.interceptor';
 import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
+import { UrlParam } from 'src/common/params/url-param.decorator';
 
 @Controller('recados')
 @UsePipes(ParseIntIdPipe)
@@ -41,7 +42,8 @@ export class RecadosController {
   @HttpCode(HttpStatus.OK)
   @Get()
   @UseInterceptors(TimingConnectionInterceptor, ErrorHandlingInterceptor)
-  findAll(@Query() paginationDto: PaginationDto) {
+  findAll(@Query() paginationDto: PaginationDto, @UrlParam() url: string) {
+    console.log('URL da requisição:', url);
     return this.recadosService.findAll(paginationDto);
   }
 
