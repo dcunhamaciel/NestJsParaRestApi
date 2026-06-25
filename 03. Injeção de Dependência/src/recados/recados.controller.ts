@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Inject,
   Param,
   Patch,
   Post,
@@ -16,11 +17,20 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
+import { SERVER_NAME } from 'src/common/constants/server-name.constant';
 
 @Controller('recados')
 @UsePipes(ParseIntIdPipe)
 export class RecadosController {
-  constructor(private readonly recadosService: RecadosService) {}
+  constructor(
+    private readonly recadosService: RecadosService,
+    @Inject(SERVER_NAME)
+    private readonly serverName: string,
+  ) {
+    console.log(
+      `RecadosController inicializado no servidor: ${this.serverName}`,
+    );
+  }
 
   @Get(':id')
   findOne(@Param('id') id: number) {

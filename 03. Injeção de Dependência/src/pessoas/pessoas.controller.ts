@@ -7,14 +7,24 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Inject,
 } from '@nestjs/common';
 import { PessoasService } from './pessoas.service';
 import { CreatePessoaDto } from './dto/create-pessoa.dto';
 import { UpdatePessoaDto } from './dto/update-pessoa.dto';
+import { SERVER_NAME } from 'src/common/constants/server-name.constant';
 
 @Controller('pessoas')
 export class PessoasController {
-  constructor(private readonly pessoasService: PessoasService) {}
+  constructor(
+    private readonly pessoasService: PessoasService,
+    @Inject(SERVER_NAME)
+    private readonly serverName: string,
+  ) {
+    console.log(
+      `PessoasController inicializado no servidor: ${this.serverName}`,
+    );
+  }
 
   @Post()
   create(@Body() createPessoaDto: CreatePessoaDto) {
