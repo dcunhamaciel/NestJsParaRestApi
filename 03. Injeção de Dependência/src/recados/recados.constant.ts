@@ -1,0 +1,3 @@
+export const SERVER_NAME = 'Recados Server';
+export const ONLY_LOWER_CASE_LETTERS_REGEX = 'ONLY_LOWER_CASE_LETTERS_REGEX';
+export const REMOVE_SPACES_REGEX = 'REMOVE_SPACES_REGEX';
