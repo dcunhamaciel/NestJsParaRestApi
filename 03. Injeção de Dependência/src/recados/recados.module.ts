@@ -15,6 +15,7 @@ import { RemoveSpacesRegex } from 'src/common/regex/remove-spaces.regex';
 import { OnlyLowerCaseLettersRegex } from 'src/common/regex/only-lower-case-letters.regex';
 import { OnlyLowerCaseLettersInterfaceRegex } from 'src/common/regex/only-lower-case-letters-interface.regex';
 import { RemoveSpacesInterfaceRegex } from 'src/common/regex/remove-spaces-interface.regex';
+import { RegexFactory } from 'src/common/regex/regex.factory';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { RemoveSpacesInterfaceRegex } from 'src/common/regex/remove-spaces-inter
   providers: [
     RecadosService,
     RecadosUtils,
+    RegexFactory,
     {
       provide: SERVER_NAME,
       useValue: 'Recados Server',
@@ -40,6 +42,20 @@ import { RemoveSpacesInterfaceRegex } from 'src/common/regex/remove-spaces-inter
     {
       provide: REMOVE_SPACES_REGEX,
       useClass: RemoveSpacesInterfaceRegex,
+    },
+    {
+      provide: ONLY_LOWER_CASE_LETTERS_REGEX,
+      useFactory: (regexFactory: RegexFactory) => {
+        return regexFactory.create('OnlyLowerCaseLettersInterface');
+      },
+      inject: [RegexFactory],
+    },
+    {
+      provide: REMOVE_SPACES_REGEX,
+      useFactory: (regexFactory: RegexFactory) => {
+        return regexFactory.create('RemoveSpacesInterface');
+      },
+      inject: [RegexFactory],
     },
   ],
   exports: [RecadosUtils, SERVER_NAME],
