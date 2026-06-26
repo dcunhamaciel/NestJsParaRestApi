@@ -18,12 +18,14 @@ import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { ParseIntIdPipe } from 'src/common/pipes/parse-int-id.pipe';
 import { SERVER_NAME } from 'src/common/constants/server-name.constant';
+import { RegexProtocol } from 'src/common/regex/regex.protocol';
 
 @Controller('recados')
 @UsePipes(ParseIntIdPipe)
 export class RecadosController {
   constructor(
     private readonly recadosService: RecadosService,
+    private readonly regexProtocol: RegexProtocol,
     @Inject(SERVER_NAME)
     private readonly serverName: string,
   ) {
@@ -34,6 +36,7 @@ export class RecadosController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
+    console.log(this.regexProtocol.execute(this.serverName));
     return this.recadosService.findOne(id);
   }
 
