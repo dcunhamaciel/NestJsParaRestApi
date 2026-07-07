@@ -45,7 +45,11 @@ import { RegexFactory } from 'src/common/regex/regex.factory';
     },
     {
       provide: ONLY_LOWER_CASE_LETTERS_REGEX,
-      useFactory: (regexFactory: RegexFactory) => {
+      useFactory: async (regexFactory: RegexFactory) => {
+        console.log('ESPERANDO: vou aguardar a promise ser resolvida.');
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        console.log('PRONTO: vou aguardar a promise ser resolvida.');
+
         return regexFactory.create('OnlyLowerCaseLettersInterface');
       },
       inject: [RegexFactory],
