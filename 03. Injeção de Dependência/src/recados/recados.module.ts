@@ -16,11 +16,16 @@ import { OnlyLowerCaseLettersRegex } from 'src/common/regex/only-lower-case-lett
 import { OnlyLowerCaseLettersInterfaceRegex } from 'src/common/regex/only-lower-case-letters-interface.regex';
 import { RemoveSpacesInterfaceRegex } from 'src/common/regex/remove-spaces-interface.regex';
 import { RegexFactory } from 'src/common/regex/regex.factory';
+import { MyDynamicModule } from 'src/my-dynamic/my-dynamic.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Recado]),
     forwardRef(() => PessoasModule),
+    MyDynamicModule.register({
+      apiKey: 'my-api-key',
+      apiUrl: 'https://api.example.com',
+    }),
   ],
   controllers: [RecadosController],
   providers: [
